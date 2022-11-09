@@ -9,6 +9,8 @@ services:
       - dev_network
     ports:
       - "3002:3000"
+    volumes:
+      - ./logs:/var/log/app:rw
     env_file:
       - ./services/inventory/ci.env
     depends_on:
@@ -26,6 +28,16 @@ services:
       TZ: UTC
     networks:
       - dev_network
+  
+  promtail:
+    image: grafana/promtail:2.1.0
+    ports:
+      - 9080:9080
+    command:
+      - "--config.file=/etc/promtail/promtail.yml"
+    volumes:
+      - ./deployment-manifests/grafana-loki/promtail.yml:/etc/promtail/promtail.yml
+      - ./logs:/var/log/app
       
 networks:
   dev_network:
