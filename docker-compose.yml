@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  inventory: 
+    build: 
+      context: ./services/inventory
+    command: npm start
+    networks:
+      - dev_network
+    ports:
+      - "3002:3000"
+    env_file:
+      - ./services/inventory/ci.env
+    depends_on:
+      - db
+  # Common Resource
+  db:
+    build:
+      context: ./deployment-manifests/postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_pass
+      TZ: UTC
+    networks:
+      - dev_network
+      
+networks:
+  dev_network:
+    driver: bridge

@@ -1,0 +1,5 @@
+CREATE DATABASE inventory_db;
+GRANT ALL PRIVILEGES ON DATABASE inventory_db TO dev_user;
+
+CREATE DATABASE users_db;
+GRANT ALL PRIVILEGES ON DATABASE users_db TO dev_user;

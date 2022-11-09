@@ -36,12 +36,12 @@
 - [x] Minio (Interface for AWS S3, Cloud Store - GCP, others...)
 - [x] BigQuery
 - [x] MemCache
-- [x] Elastic search
+- [ ] Solr ~~Elastic search~~
 - [ ] Redis
 
 ## Search Engine:
-- [x] Elastic Search
-- [ ] Solr
+- [ ] Elastic Search
+- [x] Solr
 - [ ] Algolia
 - [ ] MongoDB
 
@@ -49,11 +49,11 @@
 - [x] memcache
 - [ ] Redis
 
-## Mornitoring: 
-- [x] ELK, ~~Datadog~~, ~~newrelic~~ 
+## Observability vs Monitoring: 
+- [x] Grafana Loki, ~~ELK, Datadog, newrelic~~ 
 - [x] Promithius
-- [x] Grafana
-- [x] Promithius's Alertmanager integrate to email and slack
+- [x] Grafana Tempo (Distributed tracing)
+- [x] Grafana Oncall (Alertmanager integrate to email and slack)
 
 ## Backup: 
 - [ ] DB Replica delay 1 day compage to the master.
