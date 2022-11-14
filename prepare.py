@@ -10,6 +10,10 @@ repos = {
     "services/gateway": "https://github.com/tuanda831/api-gateway.git",
     "services/inventory": "https://github.com/tuanda831/inventory-service.git",
     "services/search": "https://github.com/tuanda831/search-service.git",
+    "services/users-services": "https://github.com/tuanda831/users-services.git",
+    "services/data-warehourse": "https://github.com/tuanda831/data-warehourse.git",
+    "services/admin-portal": "https://github.com/tuanda831/admin-portal.git",
+    "services/storefront": "https://github.com/tuanda831/storefront.git",
 }
 
 # Helpers
@@ -36,7 +40,7 @@ def checkout_repo(name, url):
         subprocess.call(["git", "clone", url, name])
         return
 
-    print bold("Updating " + name)
+    print(bold("Updating " + name))
     with cd(name):
         subprocess.call(["git", "checkout", "master"])
         subprocess.call(["git", "pull"])
@@ -49,10 +53,10 @@ def checkout_master():
 
 def all_git_status():
     for name in repos:
-        print bold("Repo: " + name)
+        print(bold("Repo: " + name))
         with cd(name):
             subprocess.call(["git", "status"])
-            print ""
+            print("")
 
 def main():
     if len(sys.argv[1:]) == 0:
