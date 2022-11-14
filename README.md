@@ -14,48 +14,61 @@
 
 # [Microservice with Node JS](https://www.linkedin.com/in/tuando831/)
 
+![Service Map](docs/service-map.drawio.png "Title")
+
 ## Blueprints
+
 The Blueprint is divided into several sections:
 
-* [Overview Architecture](/docs/README.md)
-* [API Gateway](https://github.com/tuanda831/api-gateway)
-* [Users Service](docs/users/README.md)
-* [Storefront Sites](/docs/storefront/README.md)
-* [Search Service](https://github.com/tuanda831/search-service)
-* [Data Warehouse Service](/docs/data-warehouse/README.md)
-* [Inventory Service](https://github.com/tuanda831/inventory-service)
-* [Customers Service](docs/customers/README.md)
+- [Overview Architecture](/docs/README.md)
+- [API Gateway](https://github.com/tuanda831/api-gateway)
+- Users Service
+- [Inventory Service](https://github.com/tuanda831/inventory-service)
+- [Search Service](https://github.com/tuanda831/search-service)
+- File Service
+- Order Service
+- Customer Service
+- Data Warehouse Service
+- Admin portal
+- Storefront Sites
 
 ## Contact points
+
 You can find the member who can support you on the topics here:
-* API Gateway: @tuanda831
-* Users Service: @tuanda831
-* Storefront Sites: @tuanda831
-* Inventory Service: @tuanda831
-* Customer Service: @tuanda831
-* Search Service: @tuanda831
-* Data Warehouse Service: @tuanda831
+
+- API Gateway: @tuanda831
+- Users Service: @tuanda831
+- Inventory Service: @tuanda831
+- Search Service: @tuanda831
+- File Service: @tuanda831
+- Data Warehouse Service: @tuanda831
+- Admin Portal: @tuanda831
+- Storefront Sites: @tuanda831
 
 ## Roadmap
 
-- [x]  Design High-Level Solution
-- [x]  Setup Dev Environment
-- [x]  Implementing the Inventory Services
-- [ ]  Implementing the Search Services
-- [ ]  Implementing the API Gateway
-- [ ]  Implementing the Storefront Sites
-- [ ]  Implementing the Users Services
-- [ ]  Implementing the Customers Services
-- [ ]  Implementing the Data Warehouse Services
-- [ ]  Setup CI Pipeline
-- [ ]  Setup Infra to deployment and CD pipeline
-- [ ]  Setup Mornitoring tools, ELK, Grafana and prometheus + alertmanager
-- [ ]  Setup Database daily backup
+- [x] Design High-Level Solution
+- [x] Setup Dev Environment
+- [x] Setup Mornitoring tools, Loki, Promtail, Grafana
+- [ ] Setup CI Pipeline
+- [ ] Implementing the API Gateway
+- [ ] Implementing the Users Services
+- [x] Implementing the Inventory Services
+- [x] Implementing the Search Services
+- [ ] Implementing the File Services
+- [ ] Implementing the Order Services
+- [ ] Implementing the Customer Services
+- [ ] Implementing the Data Warehouse Services
+- [ ] Implementing the Admin Portal
+- [ ] Implementing the Storefront Sites
+- [ ] Setup Infra to deployment and CD pipeline
+- [ ] Setup Database daily backup
 
 ## How to Up and Run Dev Environment
+
 ### Native Application Development
 
-- Install python to run script pull source code from other services repo
+- Install python3 to run script pull source code from other services repo
 - Install docker/docker-compose on the local machine
 
 ```bash
@@ -70,24 +83,35 @@ docker-compose up -d
 
 1. Connect with PostgreSQL
 
-    > Recommend [TablePlus](https://tableplus.com/), dbeaver
+   > Recommend [TablePlus](https://tableplus.com/), dbeaver
 
-    ```
-    POSTGRES_USER=dev_user
-    POSTGRES_PASSWORD=dev_pass
-    POSTGRES_DB=inventory_db (users_db...)
-    ```
+   ```
+   POSTGRES_PORT=5432
+   POSTGRES_USER=dev_user
+   POSTGRES_PASSWORD=dev_pass
+   POSTGRES_DB=inventory_db (users_db...)
+   ```
 
 2. API Gateway URL: `http://localhost:8000`
-    - Search Endpoint: `/storefront` (port: 8080)
-    - Search Endpoint: `/admin` (port: 3000)
-    - Users Endpoint: `/users` (port: 3001)
-    - Inventory Endpoint: `/inventory` (port: 3002)
-    - Search Endpoint: `/search` (port: 3003)
-    - Search Endpoint: `/data-warehourse` (port: 3004)
-    - Search Endpoint: `/customers` (port: 3005)
+
+   - Users Endpoint: `/users` (port: 3001)
+   - Inventory Endpoint: `/inventory` (port: 3002)
+   - Search Endpoint: `/search` (port: 3003)
+   - Search Endpoint: `/files` (port: 3004)
+   - Search Endpoint: `/data-warehourse` (port: 3005)
+   - Search Endpoint: `/orders` (port: 3006)
+   - Search Endpoint: `/customers` (port: 3007)
+   - Search Endpoint: `/admin` (port: 8001)
+   - Search Endpoint: `/storefront` (port: 8002)
 
 3. APIs Document (Swagger): http://localhost:8000/{service-slug}/docs
+
+4. Other Resource:
+   - ElasticSearch: http://localhost:9200
+   - Kafka (Localhost): http://localhost:9092
+   - Kafka (Inside Container): http://broker:29092
+   - Kibana UI: http://localhost:8003
+   - Kafka UI: http://localhost:8004
 
 ## How to access QA Environment
 
@@ -112,18 +136,22 @@ both humans and machine:
 
 Must be one of the following:
 
-* build: MR introduces changes to the build process
-* ci: MR introduces changes to ci/cd pipelines
-* docs: MR introduces changes to the documentation
-* feat: MR introduces changes to an existing features or a new one
-* fix: MR introduces changes that fix a reported bug
-* perf: MR introduces changes that are related to performance
-* refactor: MR introduces changes that neither fixes a bug nor adds/changes a feature
-* style: MR introduces changes that formatting, naming, styling etc...
-* test: MR introduces changes that add missing tests or correcting existing ones
-* revert: MR reverts a previously merged commit
+- build: MR introduces changes to the build process
+- ci: MR introduces changes to ci/cd pipelines
+- docs: MR introduces changes to the documentation
+- feat: MR introduces changes to an existing features or a new one
+- fix: MR introduces changes that fix a reported bug
+- perf: MR introduces changes that are related to performance
+- refactor: MR introduces changes that neither fixes a bug nor adds/changes a feature
+- style: MR introduces changes that formatting, naming, styling etc...
+- test: MR introduces changes that add missing tests or correcting existing ones
+- revert: MR reverts a previously merged commit
 
 ### Design Pattern and Convention
-* Following SOLID
-* Mostly, service code base following the Dependancy Injection pattern
-* Generally, Source code structure will be following the [3 Layers architecture](https://medium.com/@deanrubin/the-three-layered-architecture-fe30cb0e4a6)
+
+- Microservices
+- Service Communicate (Event sourcing, Restful API, gRPC)
+- CQRS (Read/Write separately)
+- Following SOLID
+- Mostly, service code base following the Dependancy Injection pattern
+- Generally, Source code structure will be following the [3 Layers architecture](https://medium.com/@deanrubin/the-three-layered-architecture-fe30cb0e4a6)

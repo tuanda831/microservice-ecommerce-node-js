@@ -1,1 +1,0 @@
-This is API Gateway Doc
