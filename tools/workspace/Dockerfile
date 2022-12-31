@@ -42,3 +42,9 @@ RUN install skaffold /usr/local/bin/
 RUN wget -O /usr/local/bin/youtube-dl https://yt-dl.org/downloads/latest/youtube-dl
 RUN chmod +x /usr/local/bin/youtube-dl
 RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Install Gcloud cli tools
+# Install Aws cli tools
+# Install Azure cli tools
+
+
