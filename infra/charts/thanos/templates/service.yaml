@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: thanos-srv
+spec:
+  selector:
+    app: thanos
+  ports:
+    - name: thanos
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
