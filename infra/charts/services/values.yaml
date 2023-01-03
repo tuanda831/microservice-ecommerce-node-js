@@ -1,0 +1,9 @@
+name: inventory
+container:
+  image: tuanonehour/inventory
+  tag: latest
+replicas: 1
+service:
+  port: 3000
+  targetPort: 3000
+  

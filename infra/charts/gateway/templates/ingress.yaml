@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: {{ .Values.vaultDomain }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.vault.name }}
+                port:
+                  number: {{ .Values.vault.port }}
+  
+    - host: {{ .Values.apiDomain }}
+      http:
+        paths:
+          - path: /inventory
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.inventory.name }}
+                port:
+                  number: {{ .Values.inventory.port }}

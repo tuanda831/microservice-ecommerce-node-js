@@ -57,11 +57,6 @@ RUN wget -O /usr/local/bin/youtube-dl https://yt-dl.org/downloads/latest/youtube
 RUN chmod +x /usr/local/bin/youtube-dl
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# Install Kind
-RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
-RUN chmod +x ./kind
-RUN mv ./kind /usr/local/bin/kind
-
 # Install Aws cli tools
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip

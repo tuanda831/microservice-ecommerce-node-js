@@ -1,0 +1,8 @@
+vaultDomain: vault.local.host
+apiDomain: api.local.host
+inventory:
+  name: inventory-service
+  port: 4000
+vault:
+  name: vault
+  port: 8200
