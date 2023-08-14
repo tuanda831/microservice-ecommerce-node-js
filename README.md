@@ -43,7 +43,7 @@ You can find the member who can support you on the topics here:
 - File Service: @tuanda831
 - Data Warehouse Service: @tuanda831
 - Admin Portal: @tuanda831
-- Storefront Sites: @tuanda831
+- Storefront Sites: @tuando831
 
 ## Roadmap
 
